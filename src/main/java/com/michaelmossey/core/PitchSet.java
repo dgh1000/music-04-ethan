@@ -1,6 +1,7 @@
 package com.michaelmossey.core;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class PitchSet
 {
@@ -22,5 +23,38 @@ public class PitchSet
             t += span;
         }
         return output;
-    } 
+    }
+    
+    public PitchSet transpose(int semitones)
+    {
+        List<Integer> newPitches = new ArrayList<>();
+        newPitches.addAll(pitches);
+        for (int i = 0; i < newPitches.size(); i++) {
+            newPitches.set(i, newPitches.get(i) + semitones);
+        }
+        return new PitchSet(newPitches);
+    }
+
+    public PitchSet transpose2(int semitones) 
+    {
+        List<Integer> newPitches = new ArrayList<>();
+        for (int p: pitches)
+        {
+            newPitches.add(p + semitones);
+        }
+        return new PitchSet(newPitches);
+    }
+
+    public PitchSet transpose3(int semitones) {
+        List<Integer> newPitches = pitches.stream()
+            .map(i -> i + semitones)
+            .collect(Collectors.toList());
+        return new PitchSet(newPitches);
+    }
+
 }
+
+// amazingPitches
+//    --> makeAmazingMelody()          --> makeAmazingChord()
+//
+// PitchSet moreAmazingPitches = amazingPitches.transpose(5)
