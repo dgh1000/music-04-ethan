@@ -6,11 +6,13 @@ public class Note implements Comparable<Note> {
     private double tOn;
     private double tOff;
     private int pitch;
+    private int channel;
 
-    public Note(double tOn, double tOff, int pitch) {
+    public Note(double tOn, double tOff, int pitch, int channel) {
         this.tOn = tOn;
         this.tOff = tOff;
         this.pitch = pitch;
+        this.channel = channel;
         // hasBeenEliminated = false;
     }
 
@@ -45,10 +47,10 @@ public class Note implements Comparable<Note> {
         try {
             int[] ts = onOffTimestamps(offset);
             ShortMessage m1 = new ShortMessage();
-            m1.setMessage(0x90, 1, this.pitch, 64);
+            m1.setMessage(0x90, channel, this.pitch, 64);
             Raw n1 = new Raw(m1, ts[0]);
             ShortMessage m2 = new ShortMessage();
-            m2.setMessage(0x80, 1, this.pitch, 64);
+            m2.setMessage(0x80, channel, this.pitch, 64);
             Raw n2 = new Raw(m2, ts[1]);
             // make note on and note off
             msgs[idx++] = n1;

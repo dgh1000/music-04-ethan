@@ -91,4 +91,10 @@ public class MidiInterface {
 
         }
     }
+    static public void openPlayClose(List<Note> notes) throws Exception
+    {
+        openMidiDevice();
+        playNotes(notes, new ArrayList<Raw>(), 1000);
+        closeMidiDevice();
+    }
 }

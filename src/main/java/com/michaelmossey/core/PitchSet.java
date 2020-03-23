@@ -18,7 +18,7 @@ public class PitchSet
         double t = tBeg;
         for (int p: pitches)
         {
-            Note n = new Note(t, t + dur, p);
+            Note n = new Note(t, t + dur, p, 1);
             output.add(n);
             t += span;
         }

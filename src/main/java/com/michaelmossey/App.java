@@ -23,7 +23,7 @@ public class App
             MidiInterface.sendShort(msg);
             MidiInterface.closeMidiDevice();
         } else if (i == 2) {
-            MidiApp.piece2();
+            MidiApp.hset2();
         } else {
             System.out.println("Unrecognized option.");
         }
